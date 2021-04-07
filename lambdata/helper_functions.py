@@ -28,7 +28,7 @@ class TimeSeriesSplit:
         val = int(round(len(self.df) * self.frac, 0))
         df_train = self.df.iloc[0:val, :]
         df_test = self.df.iloc[val + 1:, :]
-        return df_train, df_test
+        return (df_train.shape, df_test.shape)
 
 
 class RandomSplit:
@@ -45,4 +45,4 @@ class RandomSplit:
         """
         df_split1 = self.df.sample(frac=self.frac)
         df_split2 = self.df.drop(df_split1.index)
-        return df_split1, df_split2
+        return df_split1.shape, df_split2.shape
